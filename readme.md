@@ -46,7 +46,7 @@ Note: This directive doesn't watch over the `fp-opts` values. For doing any chan
 
 angular-flatpickr module is under MIT license:
 
-> Copyright (C) 2016 Laurent Renard.
+> Copyright (C) 2016 ArchSaber.
 >
 > Permission is hereby granted, free of charge, to any person
 > obtaining a copy of this software and associated documentation files

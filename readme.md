@@ -9,7 +9,7 @@ Currently it has following capabilities
 
 ## Example
 
-* intsall it with `bower install --save angular-flatpickr` or `npm install angular-flatpickr`
+* install it with `bower install --save angular-flatpickr` or `npm install angular-flatpickr`
 
 * Add the `ng-flatpickr` module in your app as
 

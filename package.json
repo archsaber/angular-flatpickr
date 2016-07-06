@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/archsaber/angular-flatpickr"
   },
-  "author": "Laurent Renard",
+  "author": "opavader",
   "license": "MIT",
   "devDependencies": {
     "del": "~1.1.1",

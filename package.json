@@ -1,6 +1,6 @@
 {
   "name": "angular-flatpickr",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "angular directive for flatpickr",
   "main": "index.js",
   "repository": {

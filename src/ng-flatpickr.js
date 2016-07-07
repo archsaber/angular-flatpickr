@@ -7,12 +7,13 @@
   var ngFlatpickr = angular.module('angular-flatpickr', []);
   ngFlatpickr.directive('ngFlatpickr', [function() {
     return {
+      require: 'ngModel',
       restrict : 'A',
       scope : {
         fpOpts : '&',
         fpOnSetup : '&'
       },
-      link : function(scope, element, iAttrs) {
+      link : function(scope, element, attrs, ngModel) {
         var vp;
         if (scope.fpOpts()) {
           vp = flatpickr(element[0], scope.fpOpts());
@@ -25,9 +26,15 @@
             fpItem : vp
           });
         }
+        element.on('click', function (e) {
+          scope.$apply(function() {
+            ngModel.$setViewValue(vp.selectedDateObj);
+          });
+        });
       }
     };
   }]);
 
   return ngFlatpickr;
+
 }));

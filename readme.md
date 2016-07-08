@@ -9,7 +9,7 @@ Currently it has following capabilities
 
 ## Example
 
-* install it with `bower install --save angular-flatpickr` or `npm install angular-flatpickr`
+* install it with `bower install --save angular-flatpickr`
 
 * Add the `ng-flatpickr` module in your app as
 
@@ -33,9 +33,11 @@ $scope.datePostSetup = function(fpItem) {
 
 ```
 
-In your view set the elemet as per your scope variables defined above
+In your view set the element as per your scope variables defined above
 ``` html
-<input ng-flatpickr fp-opts="dateOpts" fp-on-setup="datePostSetup(fpItem)">
+<div ng-repeat="date in dates">
+<input ng-flatpickr fp-opts="dateOpts" fp-on-setup="datePostSetup(fpItem)" ng-model="date.selectedDateObj" data-enabletime="true">
+</div>
 ```
 
 

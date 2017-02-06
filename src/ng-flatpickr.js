@@ -22,11 +22,6 @@
             fpItem : vp
           });
         }
-        element.on('click', function (e) {
-          scope.$apply(function() {
-            ngModel.$setViewValue(vp.selectedDateObj);
-          });
-        });
       }
     };
   }]);

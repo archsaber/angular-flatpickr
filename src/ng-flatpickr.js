@@ -15,7 +15,7 @@
       },
       link : function(scope, element, attrs, ngModel) {
 
-        var vp = new Flatpickr(element[0], scope.fpOpts());
+        var vp = new FlatpickrInstance(element[0], scope.fpOpts());
 
         if (scope.fpOnSetup) {
           scope.fpOnSetup({

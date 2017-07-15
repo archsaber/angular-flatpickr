@@ -19,7 +19,6 @@
     ],
     "dependencies": {
         "angular": "^1.3.0",
-        "flatpickr": "^2.6.3",
-        "flatpickr-calendar": "^2.0.0"
+        "flatpickr": "^3.0.0"
     }
 }

@@ -16,8 +16,9 @@
       link: function (scope, element, attrs, ngModel) {
 
         var vp;
-        if (!FlatpickrInstance || !flatpickr) {
+        if (!FlatpickrInstance && !flatpickr) {
           console.warn('Unable to find any flatpickr installation');
+          return;
         }
         if (FlatpickrInstance) {
           vp = new FlatpickrInstance(element[0], scope.fpOpts());

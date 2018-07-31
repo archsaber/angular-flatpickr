@@ -1,3 +1,7 @@
+/** 
+* @version 3.5.0
+* @license MIT
+*/
 (function (root, factory) {
   'use strict';
   root['angular-flatpickr'] = factory(root.angular, root.flatpickr);
@@ -14,18 +18,14 @@
         fpOnSetup: '&'
       },
       link: function (scope, element, attrs, ngModel) {
+        var fpInstance = flatpickr ? flatpickr : FlatpickrInstance;
 
-        var vp;
-        if (!FlatpickrInstance && !flatpickr) {
+        if (!fpInstance) {
           console.warn('Unable to find any flatpickr installation');
           return;
         }
-        if (FlatpickrInstance) {
-          vp = new FlatpickrInstance(element[0], scope.fpOpts());
-        } else {
-          vp = new flatpickr(element[0], scope.fpOpts());
-        }
 
+        var vp = new fpInstance(element[0], scope.fpOpts());
 
         if (scope.fpOnSetup) {
           scope.fpOnSetup({
@@ -42,5 +42,4 @@
   }]);
 
   return ngFlatpickr;
-
 }));

@@ -14,12 +14,14 @@
         fpOnSetup: '&'
       },
       link: function (scope, element, attrs, ngModel) {
-        if (!flatpickr) {
+        var fpInstance = flatpickr ? flatpickr : FlatpickrInstance;
+
+        if (!fpInstance) {
           console.warn('Unable to find any flatpickr installation');
           return;
         }
 
-        var vp = new flatpickr(element[0], scope.fpOpts());
+        var vp = new fpInstance(element[0], scope.fpOpts());
 
         if (scope.fpOnSetup) {
           scope.fpOnSetup({
@@ -36,5 +38,4 @@
   }]);
 
   return ngFlatpickr;
-
 }));

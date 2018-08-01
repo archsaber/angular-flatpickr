@@ -42,7 +42,17 @@ $scope.datePostSetup = function(fpItem) {
 
 ## Example as Component
 
-##### 2 ways to use the component, if you want to set a placeholder or do something in the inside element you can use it like this
+##### 2 ways to use the component, first is just stating the ng-flatpickr
+``` html
+<ng-flatpickr
+	fp-opts="$ctrl.dateOpts"
+	fp-on-setup="$ctrl.datePostSetup({
+		fpItem: fpItem
+	})">
+</ng-flatpickr>
+```
+
+##### The other way is if you want to set a placeholder or do something in the inside element you can use it like this
 ``` html
 <ng-flatpickr
 	fp-opts="$ctrl.dateOpts"
@@ -53,16 +63,6 @@ $scope.datePostSetup = function(fpItem) {
 		class="text-field__input"
 		placeholder="{{ $ctrl.placeholder }}">
 	</input>
-</ng-flatpickr>
-```
-
-##### The other way is just stating the ng-flatpickr
-``` html
-<ng-flatpickr
-	fp-opts="$ctrl.dateOpts"
-	fp-on-setup="$ctrl.datePostSetup({
-		fpItem: fpItem
-	})">
 </ng-flatpickr>
 ```
 

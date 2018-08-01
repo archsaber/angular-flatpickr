@@ -1,11 +1,11 @@
 (function() {
 	'use strict';
 
-	var testPickr = {
-		template: '<ng-transclude>\
-			<input type="text" ng-if="!$ctrl.fpOpts.inline" ng-model="$ctrl.ngModel" placeholder="Select Date.."></input>\
-			<div ng-if="$ctrl.fpOpts.inline"></div>\
-		</ng-transclude>',
+	var ngFlatpickr = {
+		template: '<ng-transclude>' +
+			'<input type="text" ng-if="!$ctrl.fpOpts.inline" ng-model="$ctrl.ngModel" placeholder="Select Date.."></input>' +
+			'<div ng-if="$ctrl.fpOpts.inline"></div>' +
+		'</ng-transclude>',
 		controller: ngFlatpickrCtrl,
 		transclude: true,
 		bindings: {
@@ -67,5 +67,5 @@
 
 	angular
 		.module('angular-flatpickr', [])
-		.component('testPickr', testPickr);
+		.component('ngFlatpickr', ngFlatpickr);
 })();

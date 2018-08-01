@@ -5,17 +5,21 @@
 (function() {
 	'use strict';
 
-	var testPickr = {
-		template: '<ng-transclude></ng-transclude>',
+	var ngFlatpickr = {
+		template: '<ng-transclude>' +
+			'<input type="text" ng-if="!$ctrl.fpOpts.inline" ng-model="$ctrl.ngModel" placeholder="Select Date.."></input>' +
+			'<div ng-if="$ctrl.fpOpts.inline"></div>' +
+		'</ng-transclude>',
 		controller: ngFlatpickrCtrl,
 		transclude: true,
 		bindings: {
+			ngModel: '<',
 			fpOpts: '<',
 			fpOnSetup: '&'
 		}
 	};
 
-	function ngFlatpickrCtrl($element, $timeout) {
+	function ngFlatpickrCtrl($element, $timeout, $scope) {
 		var ctrl = this;
 
 		ctrl.$onInit = function() {
@@ -28,10 +32,11 @@
 
 		function grabElementAndRunFlatpickr() {
 			$timeout(function() {
-				var element = $element.find('ng-transclude')[0].children[0];
+				var transcludeEl = $element.find('ng-transclude')[0];
+				var element = transcludeEl.children[0];
 
 				setDatepicker(element);
-			});
+			}, 0, true);
 		}
 
 		function setDatepicker(element) {
@@ -49,10 +54,18 @@
 				});
 			}
 
+			// If has ngModel set the date
+			if (ctrl.ngModel) {
+				fpInstance.setDate(ctrl.ngModel);
+			}
+
 			// destroy the flatpickr instance when the dom element is removed
 			angular.element(element).on('$destroy', function() {
 				fpInstance.destroy();
 			});
+
+			// Refresh the scope
+			$scope.$applyAsync();
 		}
 	}
 

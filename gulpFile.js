@@ -9,36 +9,60 @@ var stylish = require('jshint-stylish');
 var packageJson = require('./package.json');
 
 var distFolder = './dist/';
-var src = (['ng-flatpickr']).map(function(val) {
-  return 'src/' + val + '.js';
-});
+var conf = {
+  directive: {
+    src: './src/ng-flatpickr.js',
+    name: 'ng-flatpickr.js',
+    minName: 'ng-flatpickr.min.js'
+  },
+  component: {
+    src: './src/ng-flatpickr-comp.js',
+    name: 'ng-flatpickr-comp.js',
+    minName: 'ng-flatpickr-comp.min.js'
+  }
+};
 
+function setupLint(config) {
+  return function() {
+    return gulp.src(config.src)
+      .pipe(jshint())
+      .pipe(jshint.reporter(stylish));
+  };
+}
+
+function setupUglify(config) {
+  return function() {
+    return gulp.src(config.src)
+      .pipe(concat(config.minName))
+      .pipe(sourcemaps.init())
+      .pipe(uglify())
+      .pipe(sourcemaps.write('.'))
+      .pipe(gulp.dest(distFolder));
+  };
+}
+
+function setupConcat(config) {
+  return function() {
+    return gulp.src(config.src, {
+        base: '.'
+      })
+      .pipe(concat(config.name))
+      .pipe(gulp.dest(distFolder));
+  };
+}
 
 //just as indication
-gulp.task('lint', function() {
-  return gulp.src(src)
-    .pipe(jshint())
-    .pipe(jshint.reporter(stylish));
-});
+gulp.task('lintDirective', setupLint(conf.directive));
+gulp.task('lintComponent', setupLint(conf.component));
+gulp.task('lint', gulp.parallel('lintDirective', 'lintComponent'));
 
+gulp.task('uglifyDirective', setupUglify(conf.directive));
+gulp.task('uglifyComponent', setupUglify(conf.component));
+gulp.task('uglify', gulp.parallel('uglifyDirective', 'uglifyComponent'));
 
-gulp.task('uglify', function() {
-  return gulp.src(src)
-    .pipe(concat('ng-flatpickr.min.js'))
-    .pipe(sourcemaps.init())
-    .pipe(uglify())
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(distFolder));
-});
-
-gulp.task('concat', function() {
-  return gulp.src(src, {
-      base: '.'
-    })
-    .pipe(concat('ng-flatpickr.js'))
-    .pipe(gulp.dest(distFolder));
-});
-
+gulp.task('concatDirective', setupConcat(conf.directive));
+gulp.task('concatComponent', setupConcat(conf.component));
+gulp.task('concat', gulp.parallel('concatDirective', 'concatComponent'));
 
 gulp.task('clean', function() {
   return del([distFolder + '/*'], {

@@ -12,11 +12,10 @@ Currently it has following capabilities
 ## Install
 
 * install it with `npm install -S angular-flatpickr`
-* Or via bower `bower install --save angular-flatpickr`
 * Add the dependency
   * **Component based angular 1.5+** - `node_modules/angular-flatpickr/dist/ng-flatpickr-comp.js`
   * **Directive based angular older** - `node_modules/angular-flatpickr/dist/ng-flatpickr.js`
-* Add the `angular-flatpickr` module in your app as
+* Add the `angular-flatpickr` module in your app as shown
 
 ```js
 var module = angular.module('atApp.somemodule', [

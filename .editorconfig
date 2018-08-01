@@ -1,0 +1,9 @@
+# editorconfig.org
+
+# Code defaults
+[*]
+charset = utf-8
+indent_style = spaces
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true

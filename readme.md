@@ -7,12 +7,16 @@ Currently it has following capabilities
 * setting init options using `fp-opts` attribute
 * on setup callback using `fp-on-setup` attribute to get the created flatpickr object
 
-## Example
+**There are now support for a directive based approach and a component based**
+
+## Install
 
 * install it with `npm install -S angular-flatpickr`
 * Or via bower `bower install --save angular-flatpickr`
-
-* Add the `ng-flatpickr` module in your app as
+* Add the dependency
+  * **Component based angular 1.5+** - `node_modules/angular-flatpickr/dist/ng-flatpickr-comp.js`
+  * **Directive based angular older** - `node_modules/angular-flatpickr/dist/ng-flatpickr.js`
+* Add the `angular-flatpickr` module in your app as
 
 ```js
 var module = angular.module('atApp.somemodule', [
@@ -20,24 +24,71 @@ var module = angular.module('atApp.somemodule', [
 ]);
 ```
 
-* inside your controller set your default options and the post setup callback
+* inside your controller or component set your default options and the post setup callback
 
 ```js
 $scope.dateOpts = {
     dateFormat: 'Y-m-d',
-    defaultDate: '2016-03-01 03:30:00 -0300'
+    defaultDate: '2016-03-01 03:30:00 -0300',
+    onChange: function(selectedDates, dateStr, instance){
+        // Do stuff on change
+    }
 };
 
 $scope.datePostSetup = function(fpItem) {
     console.log('flatpickr', fpItem);
 }
-
 ```
+
+## Example as Component
+
+##### 2 ways to use the component, if you want to set a placeholder or do something in the inside element you can use it like this
+``` html
+<ng-flatpickr
+	fp-opts="$ctrl.dateOpts"
+	fp-on-setup="$ctrl.datePostSetup({
+		fpItem: fpItem
+	})">
+	<input
+		class="text-field__input"
+		placeholder="{{ $ctrl.placeholder }}">
+	</input>
+</ng-flatpickr>
+```
+
+##### The other way is just stating the ng-flatpickr
+``` html
+<ng-flatpickr
+	fp-opts="$ctrl.dateOpts"
+	fp-on-setup="$ctrl.datePostSetup({
+		fpItem: fpItem
+	})">
+</ng-flatpickr>
+```
+
+##### If ng-model is stated it will set the initial date to match it
+``` html
+<ng-flatpickr
+    ng-model="'28-10-2018'"
+	fp-opts="$ctrl.dateOpts"
+	fp-on-setup="$ctrl.datePostSetup({
+		fpItem: fpItem
+	})">
+</ng-flatpickr>
+```
+
+
+## Example as Directive
 
 In your view set the element as per your scope variables defined above
 ``` html
 <div ng-repeat="date in dates">
-<input ng-flatpickr fp-opts="dateOpts" fp-on-setup="datePostSetup(fpItem)" ng-model="date.selectedDateObj" data-enabletime="true">
+    <input
+        ng-flatpickr
+        fp-opts="dateOpts"
+        fp-on-setup="datePostSetup(fpItem)"
+        ng-model="date.selectedDateObj"
+        data-enabletime="true">
 </div>
 ```
 

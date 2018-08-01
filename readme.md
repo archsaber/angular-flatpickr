@@ -42,6 +42,7 @@ $scope.datePostSetup = function(fpItem) {
 
 ## Example as Component
 
+##### 2 ways to use the component, if you want to set a placeholder or do something in the inside element you can use it like this
 ``` html
 <ng-flatpickr
 	fp-opts="$ctrl.dateOpts"
@@ -55,18 +56,27 @@ $scope.datePostSetup = function(fpItem) {
 </ng-flatpickr>
 ```
 
-#### Using the inline option
-If using the [inline](https://flatpickr.js.org/options/) function you can just pass an empty div or whatever element the calendar should be made from see example below
-
+##### The other way is just stating the ng-flatpickr
 ``` html
 <ng-flatpickr
 	fp-opts="$ctrl.dateOpts"
 	fp-on-setup="$ctrl.datePostSetup({
 		fpItem: fpItem
 	})">
-	<div></div>
 </ng-flatpickr>
 ```
+
+##### If ng-model is stated it will set the initial date to match it
+``` html
+<ng-flatpickr
+    ng-model="'28-10-2018'"
+	fp-opts="$ctrl.dateOpts"
+	fp-on-setup="$ctrl.datePostSetup({
+		fpItem: fpItem
+	})">
+</ng-flatpickr>
+```
+
 
 ## Example as Directive
 

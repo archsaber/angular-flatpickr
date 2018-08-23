@@ -60,8 +60,7 @@ $scope.datePostSetup = function(fpItem) {
   })">
   <input
     class="text-field__input"
-    placeholder="Select Date..">
-  </input>
+    placeholder="Select Date.." />
 </ng-flatpickr>
 ```
 

@@ -64,6 +64,8 @@
 			$scope.$applyAsync();
 		}
 	}
+  
+	ngFlatpickrCtrl.$inject = ['$element', '$timeout', '$scope'];
 
 	angular
 		.module('angular-flatpickr', [])

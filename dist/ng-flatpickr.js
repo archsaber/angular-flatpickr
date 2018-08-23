@@ -1,5 +1,5 @@
 /** 
-* @version 3.6.1
+* @version 3.6.4
 * @license MIT
 */
 (function (root, factory) {

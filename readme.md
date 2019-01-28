@@ -23,24 +23,23 @@ var module = angular.module('atApp.somemodule', [
 ]);
 ```
 
-* inside your controller or component set your default options and the post setup callback
+## Example as Component
 
+* inside your parent controller or component set your default options and the post setup callback
 ```js
-$scope.dateOpts = {
+ctrl.dateOpts = {
   dateFormat: 'Y-m-d',
   placeholder: 'Change date..', // Default: 'Select Date..'
   defaultDate: '2016-03-01 03:30:00 -0300',
-  onChange: function(selectedDates, dateStr, instance){
+  onChange: function(selectedDates, dateStr, instance) {
     // Do stuff on change
   }
 };
 
-$scope.datePostSetup = function(fpItem) {
+ctrl.datePostSetup = function(fpItem) {
   console.log('flatpickr', fpItem);
 }
 ```
-
-## Example as Component
 
 ##### 2 ways to use the component, first is just stating the ng-flatpickr
 ``` html
@@ -76,7 +75,22 @@ $scope.datePostSetup = function(fpItem) {
 
 ## Example as Directive
 
-In your view set the element as per your scope variables defined above
+* inside your controller set your default options and the post setup callback
+```js
+$scope.dateOpts = {
+  dateFormat: 'Y-m-d',
+  placeholder: 'Change date..', // Default: 'Select Date..'
+  defaultDate: '2016-03-01 03:30:00 -0300',
+  onChange: function(selectedDates, dateStr, instance){
+    // Do stuff on change
+  }
+};
+
+$scope.datePostSetup = function(fpItem) {
+  console.log('flatpickr', fpItem);
+}
+```
+
 ``` html
 <div ng-repeat="date in dates">
   <input

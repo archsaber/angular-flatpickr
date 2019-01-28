@@ -28,6 +28,7 @@ var module = angular.module('atApp.somemodule', [
 ```js
 $scope.dateOpts = {
   dateFormat: 'Y-m-d',
+  placeholder: 'Change date..', // Default: 'Select Date..'
   defaultDate: '2016-03-01 03:30:00 -0300',
   onChange: function(selectedDates, dateStr, instance){
     // Do stuff on change
@@ -58,9 +59,6 @@ $scope.datePostSetup = function(fpItem) {
   fp-on-setup="$ctrl.datePostSetup({
     fpItem: fpItem
   })">
-  <input
-    class="text-field__input"
-    placeholder="Select Date.." />
 </ng-flatpickr>
 ```
 

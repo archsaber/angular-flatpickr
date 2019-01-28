@@ -3,7 +3,7 @@
 
 	var ngFlatpickr = {
 		template: '<ng-transclude>' +
-			'<input type="text" ng-if="!$ctrl.fpOpts.inline" ng-model="$ctrl.ngModel" placeholder="Select Date.."></input>' +
+			'<input type="text" ng-if="!$ctrl.fpOpts.inline" ng-model="$ctrl.ngModel" placeholder="{{ $ctrl.fpOpts.placeholder }}"></input>' +
 			'<div ng-if="$ctrl.fpOpts.inline"></div>' +
 		'</ng-transclude>',
 		controller: ngFlatpickrCtrl,
@@ -19,6 +19,8 @@
 		var ctrl = this;
 
 		ctrl.$onInit = function() {
+			ctrl.fpOpts.placeholder = ctrl.fpOpts.placeholder || 'Select Date..';
+
 			grabElementAndRunFlatpickr();
 		};
 
@@ -64,7 +66,7 @@
 			$scope.$applyAsync();
 		}
 	}
-  
+
 	ngFlatpickrCtrl.$inject = ['$element', '$timeout', '$scope'];
 
 	angular
